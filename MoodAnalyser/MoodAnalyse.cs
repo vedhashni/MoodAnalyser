@@ -19,7 +19,11 @@ namespace MoodAnalyser
         {
             try
             {
-                if (message.ToLower().Contains("happy"))
+                if (message.Equals(string.Empty))
+                {
+                    throw new CustomException(CustomException.ExceptionType.EMPTY_EXCEPTION, "Mood should not be empty");
+                }
+                else if (message.ToLower().Contains("happy"))
                 {
                     return "happy";
                 }
@@ -28,10 +32,11 @@ namespace MoodAnalyser
                     return "sad";
                 }
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException ex)
             {
-                return "happy";
+                throw new CustomException(CustomException.ExceptionType.NULL_EXCEPTION, "Mood should not be null");
             }
         }
     }
 }
+
