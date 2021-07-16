@@ -165,5 +165,22 @@ namespace UnitTest1
                 Assert.AreEqual(expected, actual1.Message);
             }
         }
+        [TestMethod]
+        public void Reflection_Return_Method()
+        {
+            string expected = "happy";
+            Factory factory = new Factory();
+            string actual = factory.InvokeAnalyserMethod("happy", "AnalyzeMood");
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Reflection_Return_Invalid_Method()
+        {
+            string expected = "happy";
+            Factory factory = new Factory();
+            string actual = factory.InvokeAnalyserMethod("happy", "Analyze");
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
