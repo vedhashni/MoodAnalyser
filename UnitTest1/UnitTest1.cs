@@ -128,5 +128,42 @@ namespace UnitTest1
                 Assert.AreEqual(expected, actual.Message);
             }
         }
+
+        [TestMethod]
+        public void Reflection_Return_Parameterized_Constructor()
+        {
+            string message = "I am in happy mood";
+            MoodAnalyse expected = new MoodAnalyse(message);
+            object actual = null;
+            try
+            {
+                Factory factory = new Factory();
+                actual = factory.CreateMoodAnalyserParameterizedObject("MoodAnalyserProblem2.MoodAnalyser", "MoodAnalyser", message);
+
+            }
+            catch (CustomException ex)
+            {
+                throw new System.Exception(ex.Message);
+            }
+            actual.Equals(expected);
         }
+        //Invalid case
+        [TestMethod]
+        public void Reflection_Return_Parameterized_Class_Invalid()
+        {
+            string message = "I am in happy mood";
+            MoodAnalyse expected = new MoodAnalyse(message);
+            object actual = null;
+            try
+            {
+                Factory factory = new Factory();
+                actual = factory.CreateMoodAnalyserParameterizedObject("MoodAnalyserProblem2.MoodAna", "MoodAnalyser", message);
+
+            }
+            catch (CustomException actual1)
+            {
+                Assert.AreEqual(expected, actual1.Message);
+            }
+        }
+    }
 }
