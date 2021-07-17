@@ -182,5 +182,22 @@ namespace UnitTest1
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Reflection_Return_Set_Feild_Happy_Message()
+        {
+            string expected = "happy";
+            Factory factory = new Factory();
+            string actual = factory.SetField("happy", "message");
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Reflection_Return_Set_Feild_Sad_Message()
+        {
+            string expected = "sad";
+            Factory factory = new Factory();
+            string actual = factory.SetField("sad", "message");
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
